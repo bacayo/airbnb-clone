@@ -4,13 +4,19 @@ import React, { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
+import { onClose, onOpen } from "@/redux/slices/registerModalSlice";
+import { useAppDispatch } from "@/hooks/reduxHooks";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  //TODO: open modal redux 1.12.01
 
   return (
     <div className="relative">
@@ -36,7 +42,12 @@ const UserMenu = () => {
           <div className="flex flex-col cursor-pointer">
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sign Up" />
+              <MenuItem
+                onClick={() => {
+                  dispatch(onOpen());
+                }}
+                label="Sign Up"
+              />
             </>
           </div>
         </div>

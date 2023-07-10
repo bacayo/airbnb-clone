@@ -4,7 +4,7 @@ import React from "react";
 import { IconType } from "react-icons";
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   outline?: boolean;
@@ -42,7 +42,3 @@ const Button = ({
 };
 
 export default Button;
-
-// ${outline ? "bg-white" : "bg-rose-500"},
-
-//   ${outline ? "text-black" : "text-white"}
