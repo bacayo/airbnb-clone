@@ -5,9 +5,19 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import { onClose, onOpen } from "@/redux/slices/registerModalSlice";
+import {
+  onClose as onCloseLoginModal,
+  onOpen as onOpenLoginModal,
+} from "@/redux/slices/loginModalSlice";
 import { useAppDispatch } from "@/hooks/reduxHooks";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: SafeUser | null;
+}
+
+const UserMenu = ({ currentUser }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -15,8 +25,6 @@ const UserMenu = () => {
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
-
-  //TODO: open modal redux 1.12.01
 
   return (
     <div className="relative">
@@ -40,15 +48,37 @@ const UserMenu = () => {
       {isOpen && (
         <div className="absolute rounded-xl w-[40vw] md:w-3/4 bg-neutral-900 overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem
-                onClick={() => {
-                  dispatch(onOpen());
-                }}
-                label="Sign Up"
-              />
-            </>
+            {currentUser ? (
+              <>
+                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem onClick={() => {}} label="My favorites" />
+                <MenuItem onClick={() => {}} label="My reservations" />
+                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={() => {}} label="Airbnb my home" />
+                <hr />
+                <MenuItem
+                  onClick={() => {
+                    signOut();
+                  }}
+                  label="Logout"
+                />
+              </>
+            ) : (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    dispatch(onOpenLoginModal());
+                  }}
+                  label="Login"
+                />
+                <MenuItem
+                  onClick={() => {
+                    dispatch(onOpen());
+                  }}
+                  label="Sign Up"
+                />
+              </>
+            )}
           </div>
         </div>
       )}

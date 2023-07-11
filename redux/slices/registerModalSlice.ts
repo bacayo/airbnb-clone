@@ -10,7 +10,7 @@ const initialState: RegisterModalInterface = {
 };
 
 const registerModalSlice = createSlice({
-  name: "useRegisterModal",
+  name: "registerModal",
   initialState,
   reducers: {
     onOpen: (state) => {
