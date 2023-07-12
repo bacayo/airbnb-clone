@@ -41,7 +41,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
         >
           <AiOutlineMenu className="text-rose-600" />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
