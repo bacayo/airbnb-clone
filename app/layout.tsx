@@ -10,6 +10,7 @@ import ReduxProvider from "@/providers/ReduxProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import LoginModal from "@/components/Modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import RentModal from "@/components/Modals/RentModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <RegisterModal />
           <LoginModal />
+          <RentModal />
           <Navbar currentUser={curretUser} />
           {/* </ClientOnly> */}
           {children}
