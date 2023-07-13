@@ -123,7 +123,7 @@ const RegisterModal = () => {
       isOpen={isOpen}
       title="Register"
       //   actionLabel="Continue"
-      secondaryActionLabel="Continue"
+      actionLabel="Continue"
       onClose={() => {
         dispatch(onClose());
       }}

@@ -89,14 +89,14 @@ const Modal = ({
                     <Button
                       outline
                       disabled={disabled}
-                      label={actionLabel}
+                      label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
                     />
                   )}
 
                   <Button
                     disabled={disabled}
-                    label={secondaryActionLabel}
+                    label={actionLabel}
                     onClick={handleSubmit}
                   />
                 </div>

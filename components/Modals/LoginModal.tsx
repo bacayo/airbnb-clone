@@ -117,8 +117,7 @@ const LoginModal = () => {
       disabled={isLoading}
       isOpen={isOpen}
       title="Login"
-      //   actionLabel="Continue"
-      secondaryActionLabel="Continue"
+      actionLabel="Continue"
       onClose={() => {
         dispatch(onClose());
       }}

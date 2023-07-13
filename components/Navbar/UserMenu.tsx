@@ -12,6 +12,7 @@ import {
 import { useAppDispatch } from "@/hooks/reduxHooks";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/types";
+import { rentModalOnOpen } from "@/redux/slices/rentModalSlice";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -26,12 +27,20 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
     setIsOpen((prev) => !prev);
   }, []);
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      dispatch(onOpenLoginModal());
+    }
+    // Open rent Modal
+    dispatch(rentModalOnOpen());
+  }, [currentUser, dispatch]);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
           className="hidden px-4 py-3 text-sm font-semibold transition rounded-full cursor-pointer md:block hover:bg-neutral-700"
-          onClick={() => {}}
+          onClick={onRent}
         >
           Airbnb your home
         </div>
@@ -54,7 +63,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                 <MenuItem onClick={() => {}} label="My favorites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My properties" />
-                <MenuItem onClick={() => {}} label="Airbnb my home" />
+                <MenuItem
+                  onClick={() => {
+                    dispatch(rentModalOnOpen());
+                  }}
+                  label="Airbnb my home"
+                />
                 <hr />
                 <MenuItem
                   onClick={() => {
