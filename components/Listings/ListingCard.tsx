@@ -12,8 +12,8 @@ import HeartButton from "../HeartButton";
 import Button from "../Button";
 
 interface ListingCardProps {
-  data: Listing;
-  // data: SafeListing;
+  // data: Listing;
+  data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
@@ -55,7 +55,7 @@ const ListingCard = ({
     if (!reservation) return null;
 
     const start = new Date(reservation.startDate);
-    const end = new Date(reservation.endData); //! Typo here endData instead of endDate. Change in prisma.scheme
+    const end = new Date(reservation.endDate);
 
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
