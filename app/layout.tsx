@@ -37,8 +37,11 @@ export default async function RootLayout({
           <LoginModal />
           <RentModal />
           <Navbar currentUser={curretUser} />
-          {/* </ClientOnly> */}
-          {children}
+
+          <div className="pb-20 bg-neutral-800 pt-28">
+            {/* </ClientOnly> */}
+            {children}
+          </div>
         </ReduxProvider>
       </body>
     </html>

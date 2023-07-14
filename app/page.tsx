@@ -1,9 +1,37 @@
-import Image from "next/image";
+import ClientOnly from "@/components/ClientOnly";
+import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
+import getListings from "./actions/getListings";
+import ListingCard from "@/components/Listings/ListingCard";
+import getCurrentUser from "./actions/getCurrentUser";
 
-export default function Home() {
+export default async function Home() {
+  const isEmpty = true;
+
+  const listings = await getListings();
+  const currentUser = await getCurrentUser();
+
+  if (listings.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    );
+  }
+
   return (
-    <div>
-      <p>Hello airnbnb</p>
-    </div>
+    <ClientOnly>
+      <Container>
+        <div className="grid grid-cols-1 gap-8 pt-24 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+          {listings.map((listing) => (
+            <ListingCard
+              key={listing.id}
+              data={listing}
+              currentUser={currentUser}
+            />
+          ))}
+        </div>
+      </Container>
+    </ClientOnly>
   );
 }
