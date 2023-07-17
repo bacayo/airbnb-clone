@@ -11,6 +11,7 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import LoginModal from "@/components/Modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import RentModal from "@/components/Modals/RentModal";
+import SearchModal from "@/components/Modals/SearchModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,17 +32,16 @@ export default async function RootLayout({
       <body className={inter.className}>
         {/* Hydration error for navbar */}
         <ReduxProvider>
-          {/* <ClientOnly> */}
-          <ToasterProvider />
-          <RegisterModal />
-          <LoginModal />
-          <RentModal />
-          <Navbar currentUser={curretUser} />
+          <ClientOnly>
+            <ToasterProvider />
+            <RegisterModal />
+            <LoginModal />
+            <RentModal />
+            <SearchModal />
+            <Navbar currentUser={curretUser} />
 
-          <div className="h-full pb-20 pt-28">
-            {/* </ClientOnly> */}
-            {children}
-          </div>
+            <div className="h-full pb-20 pt-28">{children}</div>
+          </ClientOnly>
         </ReduxProvider>
       </body>
     </html>
