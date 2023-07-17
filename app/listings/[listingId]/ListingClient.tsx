@@ -7,7 +7,7 @@ import ListingReservation from "@/components/Listings/ListingReservation";
 import { categories } from "@/components/Navbar/Categories";
 import { useAppDispatch } from "@/hooks/reduxHooks";
 import { onOpen } from "@/redux/slices/loginModalSlice";
-import { SafeListing, SafeUser } from "@/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/types";
 import { Listing, Reservation } from "@prisma/client";
 import axios from "axios";
 import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
@@ -18,7 +18,8 @@ import { toast } from "react-hot-toast";
 import { Range } from "react-date-range";
 
 interface ListingClientProps {
-  reservations?: Reservation[];
+  // reservations?: Reservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
