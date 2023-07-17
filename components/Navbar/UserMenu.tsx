@@ -32,9 +32,10 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
   const onRent = useCallback(() => {
     if (!currentUser) {
       dispatch(onOpenLoginModal());
+    } else {
+      // Open rent Modal
+      dispatch(rentModalOnOpen());
     }
-    // Open rent Modal
-    dispatch(rentModalOnOpen());
   }, [currentUser, dispatch]);
 
   return (
